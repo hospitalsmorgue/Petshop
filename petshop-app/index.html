@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetShop - Gerenciamento</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                🐾 PetShop Manager
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="page1">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="page2">Clientes</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="page3">Produtos</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Container principal -->
+    <div class="container">
+        <!-- Página 1: Home e Cadastro -->
+        <div id="page1" class="page active">
+            <section class="petshop-info">
+                <div class="petshop-header">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23FF6B9D'/%3E%3Ctext x='50' y='60' font-size='50' fill='white' text-anchor='middle' font-weight='bold'%3E🐾%3C/text%3E%3C/svg%3E" alt="Logo" class="petshop-logo">
+                    <h1>Bem-vindo ao PetShop Feliz</h1>
+                    <p class="petshop-description">Somos especializados em cuidados com animais de estimação. Oferecemos serviços de banho, tosa, consultas veterinárias e muito mais!</p>
+                </div>
+            </section>
+
+            <section class="form-section">
+                <h2>Cadastro de Cliente</h2>
+                <form id="clientForm">
+                    <div class="form-group">
+                        <h3>Dados do Tutor</h3>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="tutorName">Nome do Tutor:</label>
+                                <input type="text" id="tutorName" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="tutorPhone">Telefone:</label>
+                                <input type="tel" id="tutorPhone" placeholder="(11) 99999-9999" required>
+                            </div>
+                        </div>
+                        <div class="form-field">
+                            <label for="tutorAddress">Endereço:</label>
+                            <input type="text" id="tutorAddress" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h3>Dados do Animal</h3>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="animalName">Nome do Animal:</label>
+                                <input type="text" id="animalName" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="animalAge">Idade:</label>
+                                <input type="number" id="animalAge" min="0" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="animalSize">Porte:</label>
+                                <select id="animalSize" required>
+                                    <option value="">Selecione um porte</option>
+                                    <option value="pequeno">Pequeno (até 5kg)</option>
+                                    <option value="medio">Médio (5kg a 15kg)</option>
+                                    <option value="grande">Grande (15kg a 30kg)</option>
+                                    <option value="gigante">Gigante (acima de 30kg)</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label for="attendanceDate">Data do Atendimento:</label>
+                                <input type="date" id="attendanceDate" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Cadastrar Cliente</button>
+                </form>
+            </section>
+        </div>
+
+        <!-- Página 2: Lista de Clientes -->
+        <div id="page2" class="page">
+            <section class="clients-section">
+                <h2>Clientes Cadastrados</h2>
+                <div id="clientsContainer" class="clients-grid">
+                    <p class="empty-message">Nenhum cliente cadastrado ainda.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Página 3: Produtos -->
+        <div id="page3" class="page">
+            <section class="products-section">
+                <div class="products-header">
+                    <h2>Loja de Produtos</h2>
+                    <div class="cart-info">
+                        <span id="cartCount" class="cart-count">0</span>
+                        <button id="viewCart" class="btn-secondary">Ver Carrinho</button>
+                    </div>
+                </div>
+                <div id="productsContainer" class="products-grid">
+                    <!-- Produtos carregados via JavaScript -->
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Modal para detalhes do cliente -->
+    <div id="clientModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Modal para carrinho de compras -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Carrinho de Compras</h2>
+            <div id="cartItems"></div>
+            <div class="cart-total">
+                <strong>Total: R$ <span id="totalPrice">0.00</span></strong>
+            </div>
+            <button id="clearCart" class="btn-danger">Limpar Carrinho</button>
+        </div>
+    </div>
+
+    <!-- Toast de notificação -->
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
